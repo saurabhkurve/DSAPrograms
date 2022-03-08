@@ -15,6 +15,7 @@ void CLTraversal(struct node *head){
     }while(ptr!=head);
 }
 
+//Inserting at Beginning of a linked list
 struct node * InsAtBeg(struct node *head,int data){
     struct node *ptr = (struct node *) malloc (sizeof(struct node));
     ptr->data=data;
