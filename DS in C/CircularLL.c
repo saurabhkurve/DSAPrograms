@@ -30,6 +30,31 @@ struct node * InsAtBeg(struct node *head,int data){
     head = ptr;
     return head;
 }
+struct node * InsInBet(struct node *head,int data,int index){
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    struct node *p = head;
+    ptr->data = data;
+    int i;
+    for(i = 0 ;i < index-1;i++)
+    {
+        p = p->next;
+    }
+    ptr->next = p->next;
+    p->next = ptr;
+    return head;
+}
+struct node * InsAtEnd(struct node *head,int data){
+    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+    ptr->data = data;
+    struct node *p = head;
+
+    while(p->next != head){
+        p = p->next;
+    }
+    p->next = ptr;
+    ptr->next = head;
+    return head;
+}
 
 int main(){
     struct node *head;
@@ -57,8 +82,9 @@ int main(){
     printf("Circular Linked List Before insertion\n");
     CLTraversal(head);
 
-    head = InsAtBeg(head,40); //Inserting at begining of a CLL
-    head = InsAtBeg(head,40);
+    //head = InsAtBeg(head,40); //Inserting at begining of a CLL
+    //head = InsInBet(head,60,2);  //Inserting at given index
+    head = InsAtEnd(head,500);
     printf("Circular Linked List After insertion\n");
     CLTraversal(head);
     return 0;
