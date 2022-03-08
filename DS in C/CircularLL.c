@@ -84,7 +84,7 @@ int main(){
 
     //head = InsAtBeg(head,40); //Inserting at begining of a CLL
     //head = InsInBet(head,60,2);  //Inserting at given index
-    head = InsAtEnd(head,500);
+    head = InsAtEnd(head,500);  //Inserting node at end
     printf("Circular Linked List After insertion\n");
     CLTraversal(head);
     return 0;
