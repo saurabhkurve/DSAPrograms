@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 struct node
 {
     struct node *prev;
@@ -7,7 +8,7 @@ struct node
     struct node *next;
 };
 
-//Traversing of a DLL
+// Traversing of a DLL
 void TraversalDLL(struct node *head)
 {
     struct node *p = head;
@@ -19,64 +20,61 @@ void TraversalDLL(struct node *head)
     printf("List traversed succesfully\n");
 }
 
-//Reverse traversing of doubly linked list
-void TraverseRev(struct node *head){
+// Deletion of a node at beginnning of a DLL
+struct node *delAtBeg(struct node *head)
+{
     struct node *p = head;
-    //struct node *temp;
-    while(p->next !=NULL){
-        p = p->next;
-    }
 
-    while(p != NULL){
-        printf("%d\n",p->data);
-        p = p->prev;
-    }
-    printf("List traversed reversely\n");
-}
+    p = p->next;
 
-//Insert a node at beginnning of a DLL
-struct node * insAtBeg(struct node *head,int data){
-    struct node *ptr = (struct node *)malloc(sizeof(struct node));
-    
-    ptr->data = data;
-    ptr->next = head;
-    head->prev = ptr;
-    ptr->prev = NULL;
-    head = ptr;
+    free(head);
+    head->next = NULL;
+    head->prev = NULL;
+
+    p->prev = NULL;
+    head = p;
     return head;
 }
 
-//Insert in between of a DLL
-struct node * insInBet(struct node *head,int data,int index){
-    struct node *ptr = (struct node *)malloc(sizeof(struct node));
-    struct node *p = head;
-    struct node *temp = head->next;
+// Deletion of a node in between of a DLL
+struct node *delAtGvnindex(struct node *head, int index)
+{
+    struct node *q = head;
+    struct node *p;
     int i;
-    for(i = 1;i < index-1 ; i++){
-        p = p->next;
-        temp = temp->next;
+
+    for (i = 1; i <= index - 1; i++)
+    {
+        p = q;
+        q = q->next;
     }
-    ptr->data = data;
-    p->next = ptr;
-    ptr->next = temp;
-    temp->prev = ptr;
-    ptr->prev = p; 
+
+    p->next = q->next;
+    q->next->prev = p->next; // or q->prev;
+
+    free(q);
+    q->next = NULL;
+    q->prev = NULL;
+
     return head;
 }
 
-//Insert a node to a DLL at end
-struct node * insAtEnd(struct node *head,int data){
-    struct node *ptr = (struct node *)malloc(sizeof(struct node));
+// Deletion of a node at end of a DLL
+struct node *detAtEnd(struct node *head)
+{
     struct node *p = head;
 
-    while(p->next != NULL){
+    while (p->next != NULL)
+    {
         p = p->next;
     }
 
-    ptr->data = data;
-    p->next = ptr;
-    ptr->prev = p;
-    ptr->next = NULL;
+    p->prev->next = NULL;
+
+    free(p);
+    p->next = NULL;
+    p->prev = NULL;
+
     return head;
 }
 
@@ -116,12 +114,15 @@ int main()
 
     printf("DLL Before insertion :\n");
     TraversalDLL(head);
-    //TraverseRev(head);
 
-    //head = insAtBeg(head,10);
-    head = insInBet(head,15,2);
-    //head = insAtEnd(head,25);
+    // head = delAtBeg(head); // ? Deletion at Beginning
+
+    //head = delAtGvnindex(head, 2); // ? Deletion in between of a DLL
+
+    head = detAtEnd(head);  // ? Deletion at end
+
     printf("DLL After insertion :\n");
     TraversalDLL(head);
+
     return 0;
 }
