@@ -47,13 +47,13 @@ int pop(struct stack *ptr){
 
 int main()
 {
-    struct stack *sp = (struct stack *)malloc(sizeof(struct stack));
-    sp->size = 10;
-    sp->top = -1;
-    sp->arr = (int *)malloc(sp->size*sizeof(int));
+    struct stack *sp = (struct stack *)malloc(sizeof(struct stack));  //Requesting for memory in heap (dynamically) for actual space
+    sp->size = 10;      //Allocate size of an array
+    sp->top = -1;       //Initially stack is empty
+    sp->arr = (int *)malloc(sp->size*sizeof(int));  //Creating array dynamically 
 
-    printf("Before Pushing, %d\n",isEmpty(sp));
-    printf("Before Pushing, %d\n",isFull(sp));
+    printf("Before Pushing, %d\n",isEmpty(sp));  //1
+    printf("Before Pushing, %d\n",isFull(sp));   //0
     
     push(sp,1);
     push(sp,3);
@@ -67,14 +67,14 @@ int main()
     push(sp,9);
     push(sp,88); //*Stack Overflow
     
-    printf("After Pushing, %d\n",isEmpty(sp));
-    printf("After Pushing, %d\n",isFull(sp));
+    printf("After Pushing, %d\n",isEmpty(sp));  //0
+    printf("After Pushing, %d\n",isFull(sp));   //1
 
-    printf("popped %d from stack\n",pop(sp));
-    printf("popped %d from stack\n",pop(sp));
+    printf("popped %d from stack\n",pop(sp));   //pop 9
+    printf("popped %d from stack\n",pop(sp));   //pop 6
 
-    printf("After Pop Operation, %d\n",isEmpty(sp));
-    printf("After Pop Operation, %d\n",isFull(sp));
+    printf("After Pop Operation, %d\n",isEmpty(sp));  //0
+    printf("After Pop Operation, %d\n",isFull(sp));   //0
 
     //! printf("Stack created succesfully\n");
     return 0;
