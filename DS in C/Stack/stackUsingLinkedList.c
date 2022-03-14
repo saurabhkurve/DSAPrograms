@@ -6,7 +6,7 @@ struct Node {
     struct Node *next;
 };
 
-
+struct Node *top = NULL;
 
 void TraversalSLL(struct Node *ptr){
     while (ptr!= NULL){
@@ -70,9 +70,22 @@ void stackBottom(struct Node *ptr){
     printf("Bottom most element is = %d\n",ptr->data);
 }
 
+int peak (int pos){
+    struct Node *ptr = top;
+    for (int i = 0; (i < pos-1 && ptr!=NULL); i++)
+    {
+        ptr = ptr->next;
+    }
+    if(ptr!= NULL){
+        return ptr->data;
+    }else{
+        return -1;
+    }
+}
+
 int main()
 {
-    struct Node *top = NULL;
+    
     top = push(top,34);
     top = push(top,343);
     top = push(top,344);
@@ -80,6 +93,7 @@ int main()
     top = push(top,346);
     top = push(top,347);
     top = push(top,348);
+    
     TraversalSLL(top);
 
     // int element = pop(top);
@@ -92,5 +106,7 @@ int main()
 
     stackTop(top);
     stackBottom(top);
+
+
     return 0;
 }

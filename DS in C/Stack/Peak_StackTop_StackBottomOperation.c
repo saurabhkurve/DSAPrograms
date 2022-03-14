@@ -57,7 +57,7 @@ int pop(struct stack *ptr){
 }
 
 int peak(struct stack *ptr,int i){
-    int arrayind = ptr->top-i+1;   //gives index at specified position
+    int arrayind = ptr->top-i+1;   //gives index at specified position from 1 use (top-i) for position from 0.
     if(arrayind<0){
         printf("Invalid position");
         return -1;
@@ -101,6 +101,8 @@ int main()
     push(sp, 556);
     push(sp, 5567);
     push(sp, 50000);
+
+    //printf("Element at position 3 is %d\n",j,peak(sp,3));
 
     for (int j = 1; j <= sp->top+1; j++)
     {
