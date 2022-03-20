@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-struct Queue
+struct CircularQueue
 {
     int size;
     int f;
@@ -8,9 +8,9 @@ struct Queue
     int *arr;
 };
 
-int isFull(struct Queue *q)
+int isFull(struct CircularQueue *q)
 { // Checking whether queue full or not
-    if (q->r == q->size - 1)
+    if ((q->r + 1)% q->size == q->f)
     {
         return 1;
     }
@@ -19,7 +19,7 @@ int isFull(struct Queue *q)
         return 0;
     }
 }
-void enqueue(struct Queue *q, int val)
+void enqueue(struct CircularQueue *q, int val)
 { // inserting array from the queue
     if (isFull(q))
     {
@@ -27,14 +27,13 @@ void enqueue(struct Queue *q, int val)
     }
     else
     {
-        q->r++;        //Linear Increment
+        q->r = (q->r+1)%q->size;  //Circular increment
         q->arr[q->r] = val;
         printf(" %d Enqueued !\n", q->arr[q->r]);
     }
-    
 }
 
-int isEmpty(struct Queue *q)
+int isEmpty(struct CircularQueue *q)
 { // Checking whether queue full or not
     if (q->f == q->r)
     {
@@ -46,7 +45,7 @@ int isEmpty(struct Queue *q)
     }
 }
 
-int dequeue(struct Queue *q)
+int dequeue(struct CircularQueue *q)
 { // Removing element from the queue
     int a = -1;
     if (isEmpty(q))
@@ -55,17 +54,17 @@ int dequeue(struct Queue *q)
     }
     else
     {
-        q->f++;
+        q->f = (q->f+1)%q->size;;
         a = q->arr[q->f];
         return a;
-    }    
+    }
 }
 
 int main()
 {
-    struct Queue q;
-    q.size = 6;
-    q.f = q.r = -1;
+    struct CircularQueue q;
+    q.size = 7;
+    q.f = q.r = 0;
     q.arr = (int *)malloc(q.size * sizeof(int));
     enqueue(&q, 12);
     enqueue(&q, 14);
@@ -83,9 +82,18 @@ int main()
     printf("Element %d is dequeued from queue.\n", dequeue(&q));
     printf("Element %d is dequeued from queue.\n", dequeue(&q));
 
-    enqueue(&q,24);  //Now we cannot equeue another element because front == rear and if front goes to at last elemenet of queue then we cant move it further.
+    enqueue(&q, 21);
+    enqueue(&q, 42);
+    enqueue(&q, 63);
+    enqueue(&q, 84);
+    enqueue(&q, 50);
+    enqueue(&q, 92);
 
-    // printf("queue is Empty.\n",isEmpty(&q)); //Now Both conditions are true because front == rear and rear = size -12this can be resolve in circular queue
-    // printf("queue is Full.\n",isFull(&q));
+    printf("Element %d is dequeued from queue.\n", dequeue(&q));
+    printf("Element %d is dequeued from queue.\n", dequeue(&q));
+
+    enqueue(&q, 50);
+    enqueue(&q, 92);
+
     return 0;
 }
