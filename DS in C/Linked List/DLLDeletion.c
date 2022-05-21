@@ -17,7 +17,6 @@ void TraversalDLL(struct node *head)
         printf("%d\n", p->data);
         p = p->next;
     }
-    printf("List traversed succesfully\n");
 }
 
 // Deletion of a node at beginnning of a DLL
@@ -112,16 +111,16 @@ int main()
     fifth->data = 20;
     fifth->next = NULL;
 
-    printf("DLL Before insertion :\n");
+    printf("DLL Before deletion :\n");
     TraversalDLL(head);
 
-    // head = delAtBeg(head); // ? Deletion at Beginning
+     head = delAtBeg(head); // ? Deletion at Beginning
 
     //head = delAtGvnindex(head, 2); // ? Deletion in between of a DLL
 
     head = detAtEnd(head);  // ? Deletion at end
 
-    printf("DLL After insertion :\n");
+    printf("DLL After deletion :\n");
     TraversalDLL(head);
 
     return 0;

@@ -50,7 +50,7 @@ struct node * insertAtEnd(struct node *head,int data){
     return head;
 }
 
-int main()head = InsAtBeg(head,40);
+int main()
 {
     struct node *head;
     struct node *second;

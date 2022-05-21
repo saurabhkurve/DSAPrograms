@@ -28,6 +28,7 @@ struct node *DelAtBeg(struct node *head)
     p->next = head->next;
     free(head);
     head = p->next;
+    printf("Deleted from beginning of a CLL\n");
     return head;
 }
 
@@ -44,6 +45,7 @@ struct node *DelAtGivVal(struct node *head, int value)
     q->next = p->next;
     free(p);
     p = NULL;
+    
     return head;
 }
 
@@ -60,6 +62,8 @@ struct node *DelAtEnd(struct node *head)
     q->next = p->next;
     free(p);
     p = NULL;
+    printf("Deleted from ending of a CLL\n");
+
     return head;
 }
 int main()
@@ -89,7 +93,7 @@ int main()
     printf("Circular Linked List Before deletion\n");
     CLTraversal(head);
 
-    // head = DelAtBeg(head); //Deletion at Beginning
+    head = DelAtBeg(head); //Deletion at Beginning
     //  head = DelAtGivVal(head,7);  //(head,value) deletion of a node with given value
 
     head = DelAtEnd(head); //(head,value) deletion of a node with given value

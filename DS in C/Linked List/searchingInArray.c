@@ -39,7 +39,7 @@ int main()
     int arr[] = {4,5,7,6,54,3,46,54,35,45};
     int size = sizeof(arr)/sizeof(arr[0]);
     int element = 46;
-    //int index = LinearSearch(arr,size,element); // ? Linear Search in an array
+    //int index = LinearSearch(arr,size,element); //  Linear Search in an array
     int index = BinarySearch(arr,size,element);
     printf("Element is at index %d\n",index);
     return 0;

@@ -80,10 +80,9 @@ int main()
     printf("Element %d is dequeued from queue.\n", dequeue(&q));
     printf("Element %d is dequeued from queue.\n", dequeue(&q));
 
-    printf("Element %d is dequeued from queue.\n", dequeue(&q));
-    printf("Element %d is dequeued from queue.\n", dequeue(&q));
+    
 
-    enqueue(&q,24);  //Now we cannot equeue another element because front == rear and if front goes to at last elemenet of queue then we cant move it further.
+    // enqueue(&q,24);  //Now we cannot equeue another element because front == rear and if front goes to at last elemenet of queue then we cant move it further.
 
     // printf("queue is Empty.\n",isEmpty(&q)); //Now Both conditions are true because front == rear and rear = size -12this can be resolve in circular queue
     // printf("queue is Full.\n",isFull(&q));

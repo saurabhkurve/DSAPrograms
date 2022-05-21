@@ -48,7 +48,7 @@ void createList(int n)
                 temp = temp->next;
             }
         }
-        printf("Singly Linked list created succesfully");
+        printf("Singly Linked list created succesfully!\n");
     }
 }
 
@@ -67,7 +67,7 @@ void insertAtBeg(int data)
         newNode->next = head;
         head = newNode;
 
-        printf("Data inserted successfully\n");
+        printf("Data inserted at beginning successfully\n");
     }
 }
 
@@ -117,7 +117,7 @@ void insertInBetween(int data,int index){
 
                 temp->next = newNode;
             }
-            
+            printf("Data inserted in between of SLL successfully\n"); 
     }
 }
 
@@ -139,7 +139,7 @@ void insertAtEnd (int data){
         }
         temp->next = newNode;
     }
-
+     printf("Data inserted at the end successfully\n");
 }
 int main()
 {
@@ -151,10 +151,10 @@ int main()
     createList(n);
     printf("Data in list is \n");
     traverseList();
-    // printf("Insert data to be inserted in new node of a list:");
-    // scanf("%d", &data);
+    printf("Insert data to be inserted in new node of a list:");
+    scanf("%d", &data);
 
-    //insertAtBeg(data);
+    insertAtBeg(data);
 
     printf("Insert data to be inserted in new node of a list:");
     scanf("%d", &data);
@@ -163,10 +163,10 @@ int main()
     
      insertInBetween(data,index);
 
-    //printf("Insert data to be inserted in new node of a list:");
-    //scanf("%d", &data);
+    printf("Insert data to be inserted in new node of a list:");
+    scanf("%d", &data);
 
-    //insertAtEnd(data);
+    insertAtEnd(data);
     printf("\nAfter insertion : \n");
     traverseList();
     return 0;
